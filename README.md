@@ -38,3 +38,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ---
 
 - Set up authentication using NextAuth (now Auth.js) with a third-party OAuth provider from Github
+- Using shadcn to reuse some of the components that will help make the application's UI
