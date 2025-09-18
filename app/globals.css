@@ -2,19 +2,13 @@
 
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 /* Plugins */
 @plugin "tailwindcss-animate";
 @plugin "@tailwindcss/typography";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
   /* Breakpoints */
   --breakpoint-xs: 475px;
 
@@ -44,26 +38,6 @@
   --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
   --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
   --shadow-300: 2px 2px 0px 2px rgb(238, 43, 105);
-}
-
-/* Dark mode configuration */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer base {
-  :root {
-    --radius: 0.5rem;
-  }
 }
 
 @layer utilities {
@@ -103,16 +77,19 @@ body {
     @apply font-normal text-sm text-white-100/80;
   }
 
-  .pink_container {
-    @apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
-  }
-
-  .tag {
-    @apply bg-secondary px-6 py-3 font-work-sans font-bold rounded-sm uppercase relative tag-tri;
+  /* Add 'pattern' class wherever you use pink_container */
+  .pink_container { 
+    @apply w-full bg-primary min-h-[530px] flex justify-center items-center flex-col py-10 px-6;
   }
   
+  /* Add 'tag-tri' class wherever you use tag */
+  .tag {
+    @apply bg-secondary px-6 py-3 font-work-sans font-bold rounded-sm uppercase relative;
+  }
+
+
   .heading {
-    @apply uppercase bg-black px-6 py-3 font-work-sans font-extrabold text-white text-[36px] leading-[46px] sm:text-[54px] sm:leading-[64px] max-w-5xl text-center my-5;
+    @apply uppercase bg-black px-6 py-3 font-work-sans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
   }
 
   .sub-heading {
@@ -161,51 +138,56 @@ body {
     @apply bg-zinc-400 h-10 w-24 rounded-lg fixed bottom-3 right-3;
   }
 
-  /* navbar */
+  /* Navbar */
+  /* Add !important class */
   .avatar {
-    @apply p-0 focus-visible:ring-0 bg-none rounded-full drop-shadow-md !important;
+    @apply p-0 focus-visible:ring-0 bg-none rounded-full drop-shadow-md;
   }
 
+  /* Add !important class */
   .dropdown-menu {
-    @apply w-56 border-[5px] border-black bg-white p-5 rounded-2xl !important;
+    @apply w-56 border-[5px] border-black bg-white p-5 rounded-2xl;
   }
 
+  /* Add !important class */
   .login {
-    @apply border-[5px] py-4 border-black bg-white text-black relative shadow-100 font-work-sans font-medium hover:shadow-none transition-all duration-500 !important;
+    @apply border-[5px] py-4 border-black bg-white text-black relative shadow-100 font-work-sans font-medium hover:shadow-none transition-all duration-500;
   }
-
+  
   /* searchform */
   .search-form {
     @apply max-w-3xl w-full min-h-[80px] bg-white border-[5px] border-black rounded-[80px] text-[24px] mt-8 px-5 flex flex-row items-center gap-5;
   }
-
+  
   .search-input {
     @apply flex-1 font-bold placeholder:font-semibold placeholder:text-black-100 w-full h-auto outline-none;
   }
-
+  
+  /* Add !important class */
   .search-btn {
-    @apply size-[50px] rounded-full bg-black flex justify-center items-center !important;
+    @apply size-[50px] rounded-full bg-black flex justify-center items-center;
   }
-
+  
   /* startupcard */
   .startup-card {
     @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-primary transition-all duration-500 hover:shadow-300 hover:bg-primary-100;
   }
-
+  
   .startup-card_date {
     @apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full group-hover:bg-white-100;
   }
-
+  
   .startup-card_desc {
     @apply font-normal text-[16px] line-clamp-2 my-3 text-black-100 break-all;
   }
-
+  
   .startup-card_img {
     @apply w-full h-[164px] rounded-[10px] object-cover;
   }
-
+  
+  /* Add !important class */
   .startup-card_btn {
-    @apply rounded-full bg-black-200 font-medium text-[16px] text-white px-5 py-3 !important;
+    @apply rounded-full bg-black-200 font-medium text-[16px] text-white px-5 py-3;
   }
 
   .startup-card_skeleton {
@@ -221,24 +203,28 @@ body {
     @apply font-bold text-[18px] text-black uppercase;
   }
 
+  /* Add !important class */
   .startup-form_input {
-    @apply border-[3px] border-black px-5 py-7 text-[18px] text-black font-semibold rounded-full mt-3 placeholder:text-black-300 !important;
+    @apply border-[3px] border-black px-5 py-7 text-[18px] text-black font-semibold rounded-full mt-3 placeholder:text-black-300;
   }
 
+  /* Add !important class */
   .startup-form_textarea {
-    @apply border-[3px] border-black p-5 text-[18px] text-black font-semibold rounded-[20px] mt-3 placeholder:text-black-300 !important;
+    @apply border-[3px] border-black p-5 text-[18px] text-black font-semibold rounded-[20px] mt-3 placeholder:text-black-300;
   }
 
   .startup-form_error {
     @apply text-red-500 mt-2 ml-5;
   }
 
+  /* Add !important class */
   .startup-form_editor {
-    @apply mt-3 border-[3px] border-black text-[18px] text-black font-semibold placeholder:text-black-300 !important;
+    @apply mt-3 border-[3px] border-black text-[18px] text-black font-semibold placeholder:text-black-300;
   }
 
+  /* Add !important class */
   .startup-form_btn {
-    @apply bg-primary border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px] !important;
+    @apply bg-primary border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px];
   }
 
   /* view */
@@ -271,4 +257,3 @@ body {
     @apply before:content-[''] before:absolute before:top-2 before:left-2 before:border-t-[10px] before:border-t-black before:border-r-[10px] before:border-r-transparent after:content-[''] after:absolute after:bottom-2 after:right-2 after:border-b-[10px] after:border-b-black after:border-l-[10px] after:border-l-transparent;
   }
 }
-
