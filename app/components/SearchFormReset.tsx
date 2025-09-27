@@ -9,9 +9,13 @@ const SearchFormReset = () => {
     if (form) form.reset();
   };
 
-  return <button type="reset" onClick={reset}>
-    <Link href="/" className="search-btn text-white font-medium">X</Link>
-  </button>;
+  return (
+    <button type="reset" onClick={reset}>
+      <Link href="/" className="search-btn text-white font-medium">
+        X
+      </Link>
+    </button>
+  );
 };
 
 export default SearchFormReset;
