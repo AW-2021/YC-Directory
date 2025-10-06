@@ -19,7 +19,8 @@ const Navbar = async () => {
                     <Link href='/startup/create'>
                         <span>Create</span>
                     </Link>
-
+                    
+                    {/* Asynchronous server action which tries to sign us out */}
                     <form action={async () => {
                       "use server";
                       await signOut({ redirectTo: "/"});
