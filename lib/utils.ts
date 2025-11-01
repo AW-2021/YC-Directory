@@ -2,7 +2,6 @@ import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
 // Add all utility functions to this file for calculations etc.
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
