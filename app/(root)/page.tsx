@@ -13,11 +13,12 @@ export default async function Home({ searchParams }: {
     views: 55,
     author: { 
       _id: 1,
-      name: 'Emily' 
+      name: "Emily"
     },
     description: "This is a post description.",
     image: "https://wp.technologyreview.com/wp-content/uploads/2025/01/robots-future.jpg?w=3000",
     title: "We Robots",
+    category: "Robots"
   }]
 
   return (
