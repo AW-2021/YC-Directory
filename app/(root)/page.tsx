@@ -1,5 +1,7 @@
 import SearchForm from "@/components/SearchForm";
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupCardType }  from "@/components/StartupCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 // Every page in Next.js has access to searchParams from the page's url
 export default async function Home({ searchParams }: {
@@ -7,19 +9,9 @@ export default async function Home({ searchParams }: {
 }) {
   const query = (await searchParams).query;
 
-  const posts = [{ 
-    _createdAt: new Date(),
-    _id: 1,
-    views: 55,
-    author: { 
-      _id: 1,
-      name: "Emily"
-    },
-    description: "This is a post description.",
-    image: "https://wp.technologyreview.com/wp-content/uploads/2025/01/robots-future.jpg?w=3000",
-    title: "We Robots",
-    category: "Robots"
-  }]
+  const posts = await client.fetch(STARTUPS_QUERY);
+  
+  // console.log(JSON.stringify(posts, null, 2));
 
   return (
     <>
