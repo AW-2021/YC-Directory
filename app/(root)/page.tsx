@@ -1,16 +1,20 @@
 import SearchForm from "@/components/SearchForm";
-import StartupCard, { StartupCardType }  from "@/components/StartupCard";
+import StartupCard, { StartupCardType } from "@/components/StartupCard";
 import { client } from "@/sanity/lib/client";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 // Every page in Next.js has access to searchParams from the page's url
-export default async function Home({ searchParams }: {
+export default async function Home({
+  searchParams,
+}: {
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
 
-  const posts = await client.fetch(STARTUPS_QUERY);
-  
+  // const posts = await client.fetch(STARTUPS_QUERY); // Data fetching on refresh or from cache/CDN (non-automatic)
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY }); // Automatic data fetching with Sanity's Live Content API
+
   // console.log(JSON.stringify(posts, null, 2));
 
   return (
@@ -29,20 +33,21 @@ export default async function Home({ searchParams }: {
 
       <section className="section_container">
         <p className="text-30-semibold">
-          { query ? `Search results for "${query}"`: 'All Startups'}
+          {query ? `Search results for "${query}"` : "All Startups"}
         </p>
 
         <ul className="mt-7 card_grid">
-          {
-            posts?.length > 0 ? (
-              posts.map((post: StartupCardType, index: number) => (
-                <StartupCard key={post?._id} post={post} />
-              ))
-            ) : (
-              <p className="no-results">No startups found</p>
-            )}
+          {posts?.length > 0 ? (
+            posts.map((post: StartupCardType, index: number) => (
+              <StartupCard key={post?._id} post={post} />
+            ))
+          ) : (
+            <p className="no-results">No startups found</p>
+          )}
         </ul>
       </section>
+
+      <SanityLive />
     </>
   );
 }
