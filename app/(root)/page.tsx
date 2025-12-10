@@ -11,9 +11,10 @@ export default async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
+  const params = { search: query || null };
 
-  // const posts = await client.fetch(STARTUPS_QUERY); // Data fetching on refresh or from cache/CDN (non-automatic)
-  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY }); // Automatic data fetching with Sanity's Live Content API
+  // const posts = await client.fetch(STARTUPS_QUERY); // Data fetching on every refresh or from cache/CDN (non-automatic)
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params }); // Automatic data fetching with Sanity's Live Content API
 
   // console.log(JSON.stringify(posts, null, 2));
 
