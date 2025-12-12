@@ -2,7 +2,7 @@ import { formatDate } from "@/lib/utils";
 import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Startup, Author } from "@/sanity/types";
 
 export type StartupCardType = Omit<Startup, "author"> & { author?: Author }
@@ -42,7 +42,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 
         <Link href={`/user/${author?._id}`}>
           <Image
-            src="https://placehold.co/48x48"
+            src={author?.image || "https://placehold.co/48x48"}
             alt="placeholder"
             width={48}
             height={48}
