@@ -3,6 +3,7 @@ import StartupCard, { StartupCardType } from "@/components/StartupCard";
 import { client } from "@/sanity/lib/client";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { auth } from "@/auth";
 
 // Every page in Next.js has access to searchParams from the page's url
 export default async function Home({
@@ -13,10 +14,11 @@ export default async function Home({
   const query = (await searchParams).query;
   const params = { search: query || null };
 
+  const session = await auth();
+  console.log(session?.id);
+
   // const posts = await client.fetch(STARTUPS_QUERY); // Data fetching on every refresh or from cache/CDN (non-automatic)
   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params }); // Automatic data fetching with Sanity's Live Content API
-
-  // console.log(JSON.stringify(posts, null, 2));
 
   return (
     <>
@@ -25,7 +27,7 @@ export default async function Home({
           Pitch Your Startup, <br /> Connect With Entrepreneurs
         </h1>
 
-        <p className="sub-heading !max-w-3xl">
+        <p className="sub-heading max-w-3xl!">
           Submit Ideas, Vote on Pitches, and Get Noticed in Virtual Competitions
         </p>
 
